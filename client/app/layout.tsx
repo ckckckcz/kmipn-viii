@@ -13,13 +13,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "MBG - Program Pemerintah",
-  description: "Makan Bergizi Gratis (MBG) untuk anak Indonesia",
+  title: "Awas - Sistem Pengawasan K3 Cerdas",
+  description: "Sistem Pengawasan Kepatuhan APD Berbasis AI & Computer Vision",
 };
 import ClientWrapper from "@/components/ClientWrapper";
 import { cn } from "@/lib/utils";
 
-const figtree = Figtree({ subsets: ['latin'], variable: '--font-sans' });
+const figtree = Figtree({ subsets: ["latin"], variable: "--font-sans" });
 
 export default function RootLayout({
   children,

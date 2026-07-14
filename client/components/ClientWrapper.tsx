@@ -7,9 +7,9 @@ import Footer from "./Footer";
 export default function ClientWrapper({ children }: { children: React.ReactNode }) {
     const pathname = usePathname();
     const isAuthPage = pathname === "/login" || pathname === "/register";
-    const isLacakPage = pathname === "/lacak";
+    const isDashboardRoute = pathname === "/dashboard" || pathname?.startsWith("/admin/") || pathname?.startsWith("/admin") || pathname?.startsWith("/user");
 
-    const hideLayout = isAuthPage || isLacakPage;
+    const hideLayout = isAuthPage || isDashboardRoute;
 
     return (
         <>

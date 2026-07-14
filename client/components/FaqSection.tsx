@@ -6,10 +6,10 @@ import { ChevronDown } from "lucide-react";
 export default function FaqSection() {
     const categories = [
         "Umum",
-        "Distribusi & Logistik",
-        "Nutrisi & Menu",
-        "Pihak Terlibat",
-        "Pelaporan Kendala"
+        "Sistem Deteksi AI",
+        "Kontrol Akses (Gate)",
+        "Dashboard & Analitik",
+        "Implementasi & Integrasi"
     ];
 
     const [activeCategory, setActiveCategory] = useState("Umum");
@@ -18,60 +18,64 @@ export default function FaqSection() {
     const questions = {
         "Umum": [
             {
-                q: "Apa itu Program Makan Bergizi Gratis (MBG)?",
-                a: "MBG adalah program prioritas nasional yang menyediakan makanan bergizi seimbang secara gratis untuk anak-anak usia sekolah di seluruh Indonesia guna mendukung pertumbuhan dan kecerdasan bangsa."
+                q: "Apa itu sistem Awas?",
+                a: "Awas adalah Sistem Pengawasan Kepatuhan Penggunaan APD berbasis Artificial Intelligence Computer Vision yang dirancang untuk memverifikasi kelengkapan APD pekerja secara otomatis dan real-time di area industri berisiko tinggi."
             },
             {
-                q: "Siapa yang berhak menerima manfaat dari program ini?",
-                a: "Target utama meliputi siswa PAUD, SD, SMP, SMA/SMK Negeri maupun Swasta, serta pondok pesantren dan institusi pendidikan setingkat lainnya di berbagai daerah."
+                q: "Mengapa sistem pengawasan otomatis seperti Awas ini diperlukan?",
+                a: "Sistem ini meminimalkan ketergantungan pada pengawasan manual yang sering kali tidak konsisten, objektif secara K3, dan rentan terhadap kelalaian manusia, sehingga menekan angka kecelakaan kerja secara signifikan."
             },
             {
-                q: "Apakah program ini memungut biaya dari siswa atau sekolah?",
-                a: "Tidak. Seluruh pendanaan berasal dari alokasi APBN pemerintah pusat dan didukung penuh tanpa memungut biaya sepeserpun dari instansi sekolah atau orang tua siswa."
-            },
-            {
-                q: "Bagaimana cara mendaftarkan sekolah yang belum masuk program?",
-                a: "Sekolah akan didata secara otomatis dan bertahap oleh Dinas Pendidikan di masing-masing wilayah, lalu diverifikasi kelayakannya sesuai prioritas area."
-            },
-            {
-                q: "Bisakah orang tua memantau menu harian anak?",
-                a: "Tentu. Melalui platform distribusi digital ini, orang tua dan publik dapat memantau pelacakan rute dan transparansi detail menu harian."
+                q: "Apakah sistem Awas berjalan secara real-time?",
+                a: "Ya, sistem memproses aliran video dari kamera pengawas secara langsung (live stream) dan mendeteksi kelengkapan APD dalam hitungan milidetik."
             }
         ],
-        "Distribusi & Logistik": [
+        "Sistem Deteksi AI": [
             {
-                q: "Bagaimana proses distribusi makanan ke sekolah terpencil?",
-                a: "Pemerintah bekerja sama dengan aparat TNI/Polri dan jaringan logistik lokal untuk memastikan distribusi hantaran makanan masuk secara aman walau ke wilayah 3T."
+                q: "APD jenis apa saja yang dapat dideteksi oleh AI Awas?",
+                a: "AI kami dapat mendeteksi kelengkapan APD standar seperti helm keselamatan (safety helmet), rompi visibilitas tinggi (safety vest), sepatu boot safety, kacamata pelindung, hingga sabuk pengaman (safety harness)."
             },
             {
-                q: "Jam berapa makanan akan dibagikan ke siswa?",
-                a: "Proses distribusi puncak dan pembagian makanan diposisikan agar siap santap pada jam istirahat pertama sekolah."
-            }
-        ],
-        "Nutrisi & Menu": [
-            {
-                q: "Bagaimana standar gizi dari menu yang diberikan?",
-                a: "Menu disusun ketat oleh ahli gizi dari Kementerian Kesehatan, memastikan setiap kotak makanan memenuhi kecukupan kalori (susu, karbohidrat, sayuran, dan lauk hewani)."
+                q: "Bagaimana jika pekerja berada di area dengan pencahayaan minim?",
+                a: "Sistem AI Awas dilengkapi model pemrosesan citra adaptif dan mendukung kamera inframerah (IR) atau thermal untuk memastikan akurasi deteksi tetap tinggi pada malam hari atau kondisi minim cahaya."
             },
             {
-                q: "Apakah ada penyesuaian untuk anak alergi?",
-                a: "Ya, pihak tenaga pendidik di sekolah akan diberikan fasilitas pendataan alergi profil siswa sebelumnya untuk menyesuaikan kotak menu khusus."
+                q: "Apakah AI dapat membedakan tamu dengan pekerja biasa?",
+                a: "Tentu. Sistem dapat diintegrasikan dengan database profil pekerja (menggunakan deteksi wajah atau kartu RFID) sehingga standar kelengkapan APD dapat disesuaikan berdasarkan peran masing-masing orang."
             }
         ],
-        "Pihak Terlibat": [
+        "Kontrol Akses (Gate)": [
             {
-                q: "Siapa yang memasak dan menyediakan masakan MBG?",
-                a: "Makanan dimasak berpusat pada Dapur Umum Terpadu (DUT) di tiap kecamatan yang mempekerjakan ratusan warga lokal dengan pengawasan sanitasi sangat ketat."
+                q: "Bagaimana cara kerja mekanisme kontrol akses (gate control)?",
+                a: "Kamera deteksi AI dipasang di gerbang masuk. Ketika pekerja mendekat, sistem akan memindai kelengkapan APD mereka. Gerbang fisik (turnstile/barrier gate) hanya akan terbuka otomatis jika seluruh APD yang diwajibkan terdeteksi lengkap."
             },
             {
-                q: "Apakah petani lokal akan dilibatkan?",
-                a: "Sangat. Bahan pokok mulai dari beras, telur, sayur hingga susu sapi sepenuhnya menggunakan skema pemberdayaan ekonomi peternak dan petani daerah setempat."
+                q: "Apa yang terjadi jika pekerja terdeteksi tidak mengenakan APD lengkap?",
+                a: "Gerbang masuk akan tetap terkunci, dan layar display di gerbang akan menampilkan APD apa saja yang kurang (misal: rompi belum dipakai). Sistem juga akan mengirimkan peringatan suara atau notifikasi ke petugas K3."
+            },
+            {
+                q: "Apakah pemantauan juga dilakukan di dalam area produksi?",
+                a: "Ya. Selain kontrol akses masuk, Awas juga mendukung pemantauan pasif menggunakan jaringan CCTV yang sudah ada untuk mendeteksi pekerja yang melepas APD saat berada di dalam area kerja luas."
             }
         ],
-        "Pelaporan Kendala": [
+        "Dashboard & Analitik": [
             {
-                q: "Bagaimana jika kualitas makanan yang diterima tidak baik?",
-                a: "Komite sekolah maupun orang tua wajib langsung melaporkan penemuan tersebut dengan menyertakan bukti foto ke fitur pelaporan platform kami. Akan diinvestigasi instan."
+                q: "Metrik apa saja yang disajikan di dalam dashboard kepatuhan?",
+                a: "Dashboard menyajikan data real-time jumlah pekerja aktif, tingkat persentase kepatuhan penggunaan APD, log waktu pelanggaran lengkap dengan rekaman foto/video kejadian, tren kepatuhan mingguan/bulanan, serta laporan kepatuhan per divisi."
+            },
+            {
+                q: "Apakah data kepatuhan ini bisa digunakan sebagai dokumen audit SMK3?",
+                a: "Sangat bisa. Seluruh data pelanggaran dan kepatuhan terdokumentasi secara digital dengan cap waktu (timestamp) yang sah, sehingga mempermudah proses audit Sistem Manajemen K3 (SMK3) secara objektif."
+            }
+        ],
+        "Implementasi & Integrasi": [
+            {
+                q: "Apakah Awas membutuhkan perangkat keras baru yang mahal?",
+                a: "Tidak harus. Awas dirancang dengan arsitektur fleksibel yang dapat diintegrasikan dengan jaringan kamera CCTV IP (standard ONVIF) dan gate control elektrik yang sudah dimiliki perusahaan."
+            },
+            {
+                q: "Bagaimana dengan kebijakan privasi dan keamanan data pekerja?",
+                a: "Semua pemrosesan video dilakukan secara lokal (on-premise edge computing) untuk menjamin privasi pekerja. Data wajah dan log kepatuhan disimpan dalam enkripsi ketat sesuai standar regulasi keamanan data industri."
             }
         ]
     };
@@ -79,14 +83,14 @@ export default function FaqSection() {
     const currentFaqs = questions[activeCategory as keyof typeof questions] || [];
 
     return (
-        <section className="relative w-full max-w-7xl mx-auto px-4 md:px-8 lg:py-24 py-10 mb-10">
+        <section id="faq" className="relative w-full max-w-7xl mx-auto px-4 md:px-8 lg:py-24 py-10 mb-10">
             <div className="flex flex-col lg:flex-row gap-10 lg:gap-24 w-full px-4 md:px-8">
 
                 {/* Left Column */}
                 <div className="w-full lg:w-[35%] flex flex-col shrink-0">
                     <h2 className="text-[28px] md:text-[34px] lg:text-[46px] font-bold text-[#111111] leading-[1.15] tracking-tight mb-10 lg:mb-20 pr-4">
                         Pertanyaan Umum Seputar
-                        <span className="text-[#2563eb] ml-2 italic font-serif tracking-normal font-medium">Program MBG</span>
+                        <span className="text-[#f15c12] ml-2 italic font-serif tracking-normal font-medium">Sistem Awas</span>
                     </h2>
 
 

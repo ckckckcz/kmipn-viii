@@ -1,26 +1,26 @@
 "use client";
 
 import React from "react";
-import { Atom, Check } from "lucide-react";
+import { Shield, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function RegisterPage() {
     return (
         <div className="flex min-h-screen w-full bg-white font-sans">
             {/* Left Column (Form) */}
-            <div className="w-full lg:w-[480px] xl:w-[520px] flex shrink-0 flex-col pt-16 pb-10 px-8 sm:px-14 md:px-16 lg:px-12 border-r border-gray-100 relative z-10 bg-white shadow-[20px_0_40px_-20px_rgba(0,0,0,0.05)]">
+            <div className="w-full max-w-5xl flex shrink-0 flex-col pt-16 pb-10 px-8 sm:px-14 md:px-16 lg:px-12 border-r border-gray-100 relative z-10 bg-white shadow-[20px_0_40px_-20px_rgba(0,0,0,0.05)]">
                 {/* Logo Top Left */}
 
                 <div className="flex-1 flex flex-col justify-center max-w-[380px] w-full mx-auto mt-4">
                     <div className="flex items-center gap-2 mb-10 text-[#111111]">
-                        <Atom className="w-8 h-8 text-[#2563eb]" strokeWidth={2.5} />
+                        <Shield className="w-8 h-8 text-[#f15c12]" strokeWidth={2.5} />
                         <span className="font-bold tracking-wide text-[22px] flex items-center">
-                            MBG<span className="text-[#2563eb]">.</span>
+                            Awas<span className="text-[#f15c12]">.</span>
                         </span>
                     </div>
                     <h1 className="text-[28px] font-bold text-gray-900 mb-2">Daftar Akun</h1>
                     <p className="text-[14px] text-gray-500 mb-8">
-                        Sudah punya akun? <a href="/login" className="font-semibold text-[#111111] hover:text-[#2563eb] underline underline-offset-2 transition-colors">Masuk di sini</a>
+                        Sudah punya akun? <a href="/login" className="font-semibold text-[#111111] hover:text-[#f15c12] underline underline-offset-2 transition-colors">Masuk di sini</a>
                     </p>
 
                     <form className="flex flex-col gap-5">
@@ -29,7 +29,7 @@ export default function RegisterPage() {
                             <input
                                 type="text"
                                 placeholder="Masukkan nama lengkap"
-                                className="w-full h-[46px] px-4 rounded-[10px] border border-gray-200 bg-gray-50/50 text-[14px] outline-none transition-all placeholder:text-gray-400 focus:bg-white focus:border-[#2563eb] focus:ring-[3px] focus:ring-[#2563eb]/10"
+                                className="w-full h-[46px] px-4 rounded-[10px] border border-gray-200 bg-gray-50/50 text-[14px] outline-none transition-all placeholder:text-gray-400 focus:bg-white focus:border-[#f15c12] focus:ring-[3px] focus:ring-[#f15c12]/10"
                             />
                         </div>
 
@@ -38,7 +38,7 @@ export default function RegisterPage() {
                             <input
                                 type="text"
                                 placeholder="Masukkan nama instansi"
-                                className="w-full h-[46px] px-4 rounded-[10px] border border-gray-200 bg-gray-50/50 text-[14px] outline-none transition-all placeholder:text-gray-400 focus:bg-white focus:border-[#2563eb] focus:ring-[3px] focus:ring-[#2563eb]/10"
+                                className="w-full h-[46px] px-4 rounded-[10px] border border-gray-200 bg-gray-50/50 text-[14px] outline-none transition-all placeholder:text-gray-400 focus:bg-white focus:border-[#f15c12] focus:ring-[3px] focus:ring-[#f15c12]/10"
                             />
                         </div>
 
@@ -47,7 +47,7 @@ export default function RegisterPage() {
                             <input
                                 type="email"
                                 placeholder="Masukkan email Anda"
-                                className="w-full h-[46px] px-4 rounded-[10px] border border-gray-200 bg-gray-50/50 text-[14px] outline-none transition-all placeholder:text-gray-400 focus:bg-white focus:border-[#2563eb] focus:ring-[3px] focus:ring-[#2563eb]/10"
+                                className="w-full h-[46px] px-4 rounded-[10px] border border-gray-200 bg-gray-50/50 text-[14px] outline-none transition-all placeholder:text-gray-400 focus:bg-white focus:border-[#f15c12] focus:ring-[3px] focus:ring-[#f15c12]/10"
                             />
                         </div>
 
@@ -56,23 +56,23 @@ export default function RegisterPage() {
                             <input
                                 type="password"
                                 placeholder="Buat kata sandi minimal 8 karakter"
-                                className="w-full h-[46px] px-4 rounded-[10px] border border-gray-200 bg-gray-50/50 text-[14px] outline-none transition-all placeholder:text-gray-400 focus:bg-white focus:border-[#2563eb] focus:ring-[3px] focus:ring-[#2563eb]/10"
+                                className="w-full h-[46px] px-4 rounded-[10px] border border-gray-200 bg-gray-50/50 text-[14px] outline-none transition-all placeholder:text-gray-400 focus:bg-white focus:border-[#f15c12] focus:ring-[3px] focus:ring-[#f15c12]/10"
                             />
                         </div>
 
                         <div className="flex items-center justify-between mt-1">
                             <label className="relative flex items-start cursor-pointer group">
                                 <input type="checkbox" className="peer sr-only" />
-                                <div className="w-5 h-5 rounded-[6px] border-[1.5px] border-gray-300 peer-checked:bg-[#2563eb] peer-checked:border-[#2563eb] transition-all bg-white flex items-center justify-center group-hover:border-[#2563eb] mt-0.5 shrink-0">
+                                <div className="w-5 h-5 rounded-[6px] border-[1.5px] border-gray-300 peer-checked:bg-[#f15c12] peer-checked:border-[#f15c12] transition-all bg-white flex items-center justify-center group-hover:border-[#f15c12] mt-0.5 shrink-0">
                                     <Check className="w-3.5 h-3.5 text-white opacity-0 peer-checked:opacity-100" strokeWidth={3} />
                                 </div>
                                 <span className="ml-2.5 text-[13px] text-gray-500 leading-snug group-hover:text-gray-700 transition-colors">
-                                    Saya menyetujui <a href="#" className="font-medium text-[#2563eb] hover:underline">Syarat & Ketentuan</a> dan <a href="#" className="font-medium text-[#2563eb] hover:underline">Kebijakan Privasi</a>
+                                    Saya menyetujui <a href="#" className="font-medium text-[#f15c12] hover:underline">Syarat & Ketentuan</a> dan <a href="#" className="font-medium text-[#f15c12] hover:underline">Kebijakan Privasi</a>
                                 </span>
                             </label>
                         </div>
 
-                        <Button className="w-full h-[48px] bg-[#2563eb] hover:bg-[#1d4ed8] text-white rounded-[10px] text-[15px] font-medium mt-2 transition-colors shadow-md shadow-[#2563eb]/20 hover:shadow-lg border-0 hover:shadow-[#2563eb]/30">
+                        <Button className="w-full h-[48px] bg-[#f15c12] hover:bg-[#1d4ed8] text-white rounded-[10px] text-[15px] font-medium mt-2 transition-colors shadow-md shadow-[#f15c12]/20 hover:shadow-lg border-0 hover:shadow-[#f15c12]/30">
                             Daftar Sekarang
                         </Button>
                     </form>
@@ -93,7 +93,7 @@ export default function RegisterPage() {
 
                 <div className="mt-auto pt-16 mx-auto text-center md:text-left">
                     <p className="text-[12px] text-gray-400">
-                        Copyright © 2026 MBG Program. Semua hak dilindungi.
+                        Copyright © 2026 Awas K3 Solution. Semua hak dilindungi.
                     </p>
                 </div>
             </div>
@@ -101,19 +101,19 @@ export default function RegisterPage() {
             {/* Right Column (Image/Decoration) */}
             <div className="hidden lg:block relative flex-1 bg-slate-950 overflow-hidden">
                 <img
-                    src="/login-mbg.png"
+                    src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&fit=crop"
                     alt="Background"
-                    className="absolute inset-0 w-full h-full object-cover opacity-80"
+                    className="absolute inset-0 w-full h-full object-cover opacity-40"
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-slate-950/80 via-slate-900/30 to-transparent" />
 
                 {/* Overlay Text */}
                 <div className="relative z-10 w-full h-full flex flex-col pt-38 px-16 xl:px-24">
                     <h2 className="text-[44px] leading-[1.1] font-bold text-white max-w-[500px]">
-                        Mari Dukung Generasi Emas Indonesia
+                        Platform Pengawasan APD Berbasis AI
                     </h2>
                     <p className="mt-3 text-[18px] leading-[1.6] text-gray-300 max-w-[500px]">
-                        Bergabung bersama jutaan pahlawan nutrisi lainnya di platform terpadu program MBG secara gratis hari ini.
+                        Pantau dan kelola tingkat kepatuhan APD pekerja secara real-time, dapatkan laporan analitis objektif, dan integrasikan kontrol akses gerbang masuk.
                     </p>
                 </div>
             </div>

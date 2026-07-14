@@ -18,29 +18,29 @@ export default function NotFound() {
             <div className="relative w-full h-full flex flex-col justify-center items-center z-20 px-4">
                 {/* Top Content */}
                 <div className="relative flex flex-col items-center text-center mt-[-10vh]">
-                    <h1 className="text-[36px] md:text-[44px] font-bold text-blue-600 mb-4 tracking-tighter">
+                    <h1 className="text-[36px] md:text-[44px] font-bold text-[#f15c12] mb-4 tracking-tighter">
                         oops
                     </h1>
-                    <p className="text-[15px] md:text-[17px] font-medium text-blue-600/90 mb-1 tracking-tight relative z-10">
+                    <p className="text-[15px] md:text-[17px] font-medium text-[#f15c12]/90 mb-1 tracking-tight relative z-10">
                         this page doesn't exist.
                     </p>
-                    <p className="text-[15px] md:text-[17px] font-medium text-blue-600/90 mb-8 tracking-tight relative z-10">
+                    <p className="text-[15px] md:text-[17px] font-medium text-[#f15c12]/90 mb-8 tracking-tight relative z-10">
                         let's go back to the home page
                     </p>
 
                     <Link href="/">
                         <div className="relative cursor-pointer group">
-                            <button className="relative z-10 h-[40px] px-6 rounded-md bg-white border border-blue-50 text-blue-600 text-[13px] font-bold tracking-wide hover:shadow-xl hover:-translate-y-0.5 transition-all shadow-md">
+                            <button className="relative z-10 h-[40px] px-6 rounded-md bg-white border border-blue-50 text-[#f15c12] text-[13px] font-bold tracking-wide hover:shadow-xl hover:-translate-y-0.5 transition-all shadow-md">
                                 Go to home
                             </button>
 
                             {/* Hand-drawn annotation */}
                             <div className="absolute -left-24 -bottom-10 pointer-events-none flex-col items-end z-20 hidden md:flex">
-                                <svg width="42" height="42" viewBox="0 0 100 100" className="mr-8 -mb-1 transform rotate-12" fill="none" stroke="#2563eb" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round">
+                                <svg width="42" height="42" viewBox="0 0 100 100" className="mr-8 -mb-1 transform rotate-12" fill="none" stroke="#f15c12" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round">
                                     <path d="M20,100 Q15,40 80,20" />
                                     <path d="M50,15 L80,20 L65,50" />
                                 </svg>
-                                <span className="text-blue-600 font-serif italic text-[16px] -rotate-6 whitespace-nowrap font-medium pr-1">
+                                <span className="text-[#f15c12] font-serif italic text-[16px] -rotate-6 whitespace-nowrap font-medium pr-1">
                                     Please Back Bro
                                 </span>
                             </div>
@@ -51,7 +51,7 @@ export default function NotFound() {
 
             {/* Bottom Giant Texts Container */}
             <div className="absolute bottom-0 w-full flex justify-center items-end overflow-hidden pb-4 md:pb-0 pointer-events-none h-[60vh] z-0">
-                <h2 className="absolute bottom-[-1vh] md:bottom-[-2vh] left-1/2 -translate-x-1/2 text-[35vw] md:text-[27vw] font-serif font-bold leading-[0.8] tracking-tighter text-blue-600 opacity-90 whitespace-nowrap mix-blend-overlay">
+                <h2 className="absolute bottom-[-1vh] md:bottom-[-2vh] left-1/2 -translate-x-1/2 text-[35vw] md:text-[27vw] font-serif font-bold leading-[0.8] tracking-tighter text-[#f15c12] opacity-90 whitespace-nowrap mix-blend-overlay">
                     404
                 </h2>
             </div>

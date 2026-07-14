@@ -15,49 +15,44 @@ export default function Navbar() {
             <div className="fixed top-0 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-7xl">
                 <div className="bg-white border border-gray-200 rounded-br-xl rounded-bl-xl h-[60px] flex items-center justify-between px-3 shadow-lg">
                     {/* Left: Logo */}
-                    <div className="flex items-center pl-4">
-                        <div className="w-[1.6rem] h-[1.6rem] rounded-full border-[3.5px] border-[#111111] border-b-transparent border-r-transparent -rotate-[45deg]" />
-                        <div className="hidden">Mock</div>
+                    <div className="flex items-center pl-8">
+                        <div className="font-extrabold tracking-wider text-[17px] text-[#111111]">
+                            Awas<span className="text-[#f15c12]">.</span>
+                        </div>
                     </div>
 
                     {/* Real Logo Vector */}
-                    <div className="pl-4 absolute left-3">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#111111" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" className="-rotate-12">
-                            <path d="M20 12A8 8 0 1 0 12 20"></path>
+                    <div className="pl-4 absolute left-2">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f15c12" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="text-[#f15c12]">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" strokeLinejoin="round" strokeLinecap="round" />
                         </svg>
                     </div>
 
                     {/* Center: Navigation (Desktop Only) */}
                     <nav className="hidden md:flex items-center gap-10 text-[14px] text-gray-500 font-medium z-10">
-                        <Link href="/lacak"><button className="cursor-pointer hover:text-[#111111] transition-colors">Lacak</button></Link>
-                        <Link href="/mitra"><button className="cursor-pointer hover:text-[#111111] transition-colors">Mitra</button></Link>
-                        <Link href="/download"><button className="cursor-pointer hover:text-[#111111] transition-colors">Download Apps</button></Link>
-                        <Link href="/contact"><button className="cursor-pointer hover:text-[#111111] transition-colors">Kontak</button></Link>
+                        <Link href="#tujuan"><button className="cursor-pointer hover:text-[#111111] transition-colors">Tujuan</button></Link>
+                        <Link href="#manfaat"><button className="cursor-pointer hover:text-[#111111] transition-colors">Manfaat</button></Link>
+                        <Link href="#faq"><button className="cursor-pointer hover:text-[#111111] transition-colors">FAQ</button></Link>
                     </nav>
 
                     {/* Right: Actions (Desktop Only) */}
                     <div className="hidden md:flex items-center relative">
                         {!isAuthenticated ? (
                             <div className="flex items-center gap-2">
-                                {/* <Button
-                                    variant="ghost"
-                                    className="px-5 h-[40px] text-[14px] font-medium text-gray-500 hover:text-[#111111] hover:bg-gray-100 rounded-md transition-colors"
-                                >
-                                    Masuk
-                                </Button> */}
                                 <div className="relative">
-                                    <Button
-                                        variant="outline"
-                                        className="h-[40px] px-5 rounded-md cursor-pointer text-[14px] font-medium hover:bg-gray-200 cursor-pointer transition-all relative z-10"
-                                        onClick={() => setIsAuthenticated(true)}
-                                    >
-                                        Daftar
-                                    </Button>
+                                    <Link href="/login">
+                                        <Button
+                                            variant="outline"
+                                            className="h-[40px] px-5 rounded-md cursor-pointer text-[14px] font-medium bg-[#f15c12] text-white hover:bg-blue-700 hover:text-white transition-all relative z-10 border-none"
+                                        >
+                                            Masuk
+                                        </Button>
+                                    </Link>
                                     <div className="hidden lg:flex absolute left-1/2 -translate-x-[65%] -bottom-[50px] pointer-events-none flex-row items-start z-40">
-                                        <span className="text-blue-600 font-serif italic text-[16px] whitespace-nowrap font-medium -rotate-[3deg] mt-[20px] mr-1">
-                                            I'm ready to work
+                                        <span className="text-[#f15c12] font-serif italic text-[16px] whitespace-nowrap font-medium -rotate-[3deg] mt-[20px] mr-1">
+                                            Pantau Kepatuhan APD
                                         </span>
-                                        <svg width="50" height="55" viewBox="0 0 100 100" fill="none" stroke="#3182ce" strokeWidth="4.5" strokeLinecap="round" strokeLinejoin="round" className="-translate-y-2">
+                                        <svg width="50" height="55" viewBox="0 0 100 100" fill="none" stroke="#f15c12" strokeWidth="4.5" strokeLinecap="round" strokeLinejoin="round" className="-translate-y-2">
                                             <path d="M 5,80 C 40,110 130,50 65,15" />
                                             <path d="M 90,12 L 65,15 L 75,40" />
                                         </svg>
@@ -72,10 +67,10 @@ export default function Navbar() {
                                         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                                     >
                                         <Bell className="w-[18px] h-[18px] text-[#333]" strokeWidth={2.5} />
-                                        <div className="absolute top-[3px] right-[4px] w-[6px] h-[6px] bg-[#2563eb] rounded-full border border-gray-50" />
+                                        <div className="absolute top-[3px] right-[4px] w-[6px] h-[6px] bg-[#f15c12] rounded-full border border-gray-50" />
                                     </button>
                                     <div
-                                        className="w-[34px] h-[34px] rounded-full overflow-hidden cursor-pointer bg-gray-200 border-2 border-transparent hover:border-[#2563eb] transition-colors"
+                                        className="w-[34px] h-[34px] rounded-full overflow-hidden cursor-pointer bg-gray-200 border-2 border-transparent hover:border-[#f15c12] transition-colors"
                                         onClick={() => setIsAuthenticated(false)}
                                         title="Logout Demo"
                                     >
@@ -90,7 +85,7 @@ export default function Navbar() {
                                             <div className="flex flex-col">
                                                 {/* Notification 1 */}
                                                 <div className="flex items-center gap-3 p-3 bg-blue-50 rounded-[14px]">
-                                                    <div className="w-[26px] h-[26px] bg-[#2563eb] rounded-full flex items-center justify-center shrink-0">
+                                                    <div className="w-[26px] h-[26px] bg-[#f15c12] rounded-full flex items-center justify-center shrink-0">
                                                         <svg width="12" height="12" viewBox="0 0 24 24" fill="white" className="mt-[1px]">
                                                             <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
                                                         </svg>
@@ -98,7 +93,7 @@ export default function Navbar() {
                                                     <div className="flex-1 text-[13px] font-semibold text-[#1a1a1a]">
                                                         Ethan liked your question
                                                     </div>
-                                                    <div className="text-[12px] text-[#2563eb]/80 font-medium">3m</div>
+                                                    <div className="text-[12px] text-[#f15c12]/80 font-medium">3m</div>
                                                 </div>
 
                                                 {/* Notification 2 */}
@@ -129,7 +124,7 @@ export default function Navbar() {
 
                                                 {/* Notification 4 */}
                                                 <div className="flex items-center gap-3 p-3 hover:bg-gray-50 rounded-[14px] transition-colors cursor-pointer">
-                                                    <div className="w-[26px] h-[26px] bg-[#2563eb] rounded-full flex items-center justify-center shrink-0">
+                                                    <div className="w-[26px] h-[26px] bg-[#f15c12] rounded-full flex items-center justify-center shrink-0">
                                                         <svg width="12" height="12" viewBox="0 0 24 24" fill="white" className="mt-[1px]">
                                                             <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
                                                         </svg>
@@ -172,7 +167,7 @@ export default function Navbar() {
                         <div className="flex flex-col gap-[3.5px] items-center relative">
                             <div className="w-[18px] h-[1.5px] bg-[#111111] rounded-full"></div>
                             <div className="w-[18px] h-[1.5px] bg-[#111111] rounded-full"></div>
-                            <div className="absolute top-[-3px] -right-[6px] w-[5px] h-[5px] bg-[#2563eb] rounded-full shadow-[0_0_4px_rgba(37,99,235,0.4)]"></div>
+                            <div className="absolute top-[-3px] -right-[6px] w-[5px] h-[5px] bg-[#f15c12] rounded-full shadow-[0_0_4px_rgba(37,99,235,0.4)]"></div>
                         </div>
                     </button>
                 </div>
@@ -198,10 +193,10 @@ export default function Navbar() {
 
                 {/* Middle: Large Navigation Links */}
                 <nav className="flex flex-col gap-6 text-[36px] font-medium text-[#111111] flex-1 overflow-y-auto mt-4">
-                    <button className="text-left hover:text-gray-600 transition-colors">Lacak</button>
-                    <button className="text-left hover:text-gray-600 transition-colors">Mitra</button>
-                    <button className="text-left hover:text-gray-600 transition-colors">Download Apps</button>
-                    <button className="text-left hover:text-gray-600 transition-colors">Contact</button>
+                    <Link href="#tujuan" onClick={() => setIsMobileMenuOpen(false)}><button className="text-left hover:text-gray-600 transition-colors">Tujuan</button></Link>
+                    <Link href="#manfaat" onClick={() => setIsMobileMenuOpen(false)}><button className="text-left hover:text-gray-600 transition-colors">Manfaat</button></Link>
+                    <Link href="#faq" onClick={() => setIsMobileMenuOpen(false)}><button className="text-left hover:text-gray-600 transition-colors">FAQ</button></Link>
+                    <Link href="/login" onClick={() => setIsMobileMenuOpen(false)}><button className="text-left hover:text-gray-600 transition-colors text-[#f15c12]">Demo Dashboard</button></Link>
                 </nav>
 
                 {/* Bottom: Contact & Social Info */}
