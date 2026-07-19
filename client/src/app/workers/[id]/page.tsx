@@ -1,32 +1,42 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import { AppShell } from "@/components/layout/AppShell";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
-import { useAwas } from "@/providers/AwasProvider";
+import { workerService } from "@/services/worker.service";
+import { zoneService } from "@/services/zone.service";
+import type { Worker, Zone } from "@/types";
 import { ComplianceBadge } from "@/features/workers/components/ComplianceBadge";
 
 export default function WorkerDetailPage() {
   const { id } = useParams<{ id: string }>();
-  const { workers, zones } = useAwas();
+  const [worker, setWorker] = useState<Worker | null>(null);
+  const [zones, setZones] = useState<Zone[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const worker = workers.find((w) => w.id === id);
-  const zone = worker ? zones.find((z) => z.id === worker.zoneId) : undefined;
+  useEffect(() => {
+    Promise.all([workerService.getById(id), zoneService.getAll()])
+      .then(([w, z]) => { setWorker(w); setZones(z); })
+      .catch((e) => setError(e.message))
+      .finally(() => setLoading(false));
+  }, [id]);
 
-  if (!worker) {
-    return (
-      <AppShell>
-        <div className="flex flex-col items-center justify-center gap-4 py-20">
-          <span className="text-muted-foreground">Pekerja tidak ditemukan.</span>
-          <Button asChild variant="outline" size="sm"><Link href="/workers">Kembali</Link></Button>
-        </div>
-      </AppShell>
-    );
-  }
+  if (loading) return <AppShell><div className="flex justify-center py-20 text-muted-foreground text-sm">Memuat...</div></AppShell>;
+  if (error || !worker) return (
+    <AppShell>
+      <div className="flex flex-col items-center justify-center gap-4 py-20">
+        <span className="text-muted-foreground">Pekerja tidak ditemukan.</span>
+        <Button asChild variant="outline" size="sm"><Link href="/workers">Kembali</Link></Button>
+      </div>
+    </AppShell>
+  );
+
+  const zone = zones.find((z) => z.id === worker.zoneId);
 
   return (
     <AppShell>

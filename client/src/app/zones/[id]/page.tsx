@@ -1,12 +1,14 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import { AppShell } from "@/components/layout/AppShell";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
-import { useAwas } from "@/providers/AwasProvider";
+import { zoneService } from "@/services/zone.service";
+import type { Zone } from "@/types";
 import { RiskBadge } from "@/features/zones/components/RiskBadge";
 import { ZoneStats } from "@/features/zones/components/ZoneStats";
 import { RequiredPpeList } from "@/features/zones/components/RequiredPpeList";
@@ -14,20 +16,26 @@ import { ZONE_TEXT } from "@/features/zones/constants/defaults";
 
 export default function ZoneDetailPage() {
   const { id } = useParams<{ id: string }>();
-  const { zones } = useAwas();
+  const [zone, setZone] = useState<Zone | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const zone = zones.find((z) => z.id === id);
+  useEffect(() => {
+    zoneService.getById(id)
+      .then(setZone)
+      .catch((e) => setError(e.message))
+      .finally(() => setLoading(false));
+  }, [id]);
 
-  if (!zone) {
-    return (
-      <AppShell>
-        <div className="flex flex-col items-center justify-center gap-4 py-20">
-          <span className="text-muted-foreground">{ZONE_TEXT.notFound}</span>
-          <Button asChild variant="outline" size="sm"><Link href="/zones">{ZONE_TEXT.back}</Link></Button>
-        </div>
-      </AppShell>
-    );
-  }
+  if (loading) return <AppShell><div className="flex justify-center py-20 text-muted-foreground text-sm">Memuat...</div></AppShell>;
+  if (error || !zone) return (
+    <AppShell>
+      <div className="flex flex-col items-center justify-center gap-4 py-20">
+        <span className="text-muted-foreground">{ZONE_TEXT.notFound}</span>
+        <Button asChild variant="outline" size="sm"><Link href="/zones">{ZONE_TEXT.back}</Link></Button>
+      </div>
+    </AppShell>
+  );
 
   return (
     <AppShell>

@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import { AppShell } from "@/components/layout/AppShell";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -7,29 +8,46 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
-import { useAwas } from "@/providers/AwasProvider";
+import { violationService } from "@/services/violation.service";
+import { workerService } from "@/services/worker.service";
+import { zoneService } from "@/services/zone.service";
 import { PPE_LABELS } from "@/types";
+import type { Violation, Worker, Zone } from "@/types";
 import { ViolationStatusBadge } from "@/features/violations/components/ViolationStatusBadge";
 import { formatTimeAgo } from "@/features/violations/utils/time";
 
 export default function ViolationDetailPage() {
   const { id } = useParams<{ id: string }>();
-  const { violations, workers, zones } = useAwas();
+  const [violation, setViolation] = useState<Violation | null>(null);
+  const [worker, setWorker] = useState<Worker | undefined>();
+  const [zone, setZone] = useState<Zone | undefined>();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const violation = violations.find((v) => v.id === id);
-  const worker = violation ? workers.find((w) => w.id === violation.workerId) : undefined;
-  const zone = violation ? zones.find((z) => z.id === violation.zoneId) : undefined;
+  useEffect(() => {
+    (async () => {
+      try {
+        const v = await violationService.getById(id);
+        setViolation(v);
+        const [w, z] = await Promise.all([workerService.getById(v.workerId), zoneService.getById(v.zoneId)]);
+        setWorker(w); setZone(z);
+      } catch (e: unknown) {
+        setError(e instanceof Error ? e.message : "Unknown error");
+      } finally {
+        setLoading(false);
+      }
+    })();
+  }, [id]);
 
-  if (!violation) {
-    return (
-      <AppShell>
-        <div className="flex flex-col items-center justify-center gap-4 py-20">
-          <span className="text-muted-foreground">Pelanggaran tidak ditemukan.</span>
-          <Button asChild variant="outline" size="sm"><Link href="/violations">Kembali</Link></Button>
-        </div>
-      </AppShell>
-    );
-  }
+  if (loading) return <AppShell><div className="flex justify-center py-20 text-muted-foreground text-sm">Memuat...</div></AppShell>;
+  if (error || !violation) return (
+    <AppShell>
+      <div className="flex flex-col items-center justify-center gap-4 py-20">
+        <span className="text-muted-foreground">Pelanggaran tidak ditemukan.</span>
+        <Button asChild variant="outline" size="sm"><Link href="/violations">Kembali</Link></Button>
+      </div>
+    </AppShell>
+  );
 
   return (
     <AppShell>

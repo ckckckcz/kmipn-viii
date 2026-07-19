@@ -3,7 +3,6 @@ import { Geist, Geist_Mono, Figtree } from "next/font/google";
 import "@/styles/globals.css";
 import ClientWrapper from "@/components/layout/ClientWrapper";
 import { cn } from "@/lib/utils";
-import { AwasProvider } from "@/providers/AwasProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,9 +31,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
       >
-        <AwasProvider>
-          <ClientWrapper>{children}</ClientWrapper>
-        </AwasProvider>
+        <ClientWrapper>{children}</ClientWrapper>
       </body>
     </html>
   );

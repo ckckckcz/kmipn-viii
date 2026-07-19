@@ -2,7 +2,10 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { AppShell } from "@/components/layout/AppShell";
-import { useAwas } from "@/providers/AwasProvider";
+import { zoneService } from "@/services/zone.service";
+import { workerService } from "@/services/worker.service";
+import { accessLogService, gateService } from "@/services/access-log.service";
+import type { Zone, Worker, AccessLog, PpeType } from "@/types";
 import { GATE_TEXT } from "@/features/gate-monitor/constants/gate-text";
 import { useCamera } from "@/features/gate-monitor/hooks/useCamera";
 import { useGateScan } from "@/features/gate-monitor/hooks/useGateScan";
@@ -12,8 +15,29 @@ import { SimulationControl } from "@/features/gate-monitor/components/Simulation
 import { ScanResultCard } from "@/features/gate-monitor/components/ScanResultCard";
 import { GateEventLog } from "@/features/gate-monitor/components/GateEventLog";
 
+function isError(e: unknown): e is Error {
+  return e instanceof Error;
+}
+
 export default function GateMonitorPage() {
-  const { zones, workers, simulateGateScan, accessLogs } = useAwas();
+  const [zones, setZones] = useState<Zone[]>([]);
+  const [workers, setWorkers] = useState<Worker[]>([]);
+  const [accessLogs, setAccessLogs] = useState<AccessLog[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchAll = useCallback(async () => {
+    try {
+      const [z, w, l] = await Promise.all([zoneService.getAll(), workerService.getAll(), accessLogService.getAll()]);
+      setZones(z); setWorkers(w); setAccessLogs(l);
+    } catch (e: unknown) {
+      setError(isError(e) ? e.message : "Unknown error");
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => { fetchAll(); }, [fetchAll]);
 
   const [selectedWorkerId, setSelectedWorkerId] = useState<string>("");
   const [selectedZoneId, setSelectedZoneId] = useState<string>("");
@@ -21,11 +45,16 @@ export default function GateMonitorPage() {
 
   const { isCameraActive, setIsCameraActive, videoRef } = useCamera();
   const { showBoxes, show: showBoundingBoxes } = useBoundingBoxes();
-  const { scanStatus, activeWorker, activeZone, scanMissingPpe, isPpeItemMissing, simulate, reset } = useGateScan(
-    useCallback((workerId, zoneId, isComplete, missingItems) => {
-      simulateGateScan(workerId, zoneId, isComplete, missingItems);
-      showBoundingBoxes();
-    }, [simulateGateScan, showBoundingBoxes])
+  const { scanStatus, activeWorker, activeZone, isPpeItemMissing, simulate } = useGateScan(
+    useCallback(async (workerId: string, zoneId: string, isComplete: boolean, missingItems: PpeType[]) => {
+      try {
+        await gateService.scan({ workerId, zoneId, isPpeComplete: isComplete, missingItems });
+        await fetchAll();
+        showBoundingBoxes();
+      } catch (e: unknown) {
+        setError(isError(e) ? e.message : "Unknown error");
+      }
+    }, [fetchAll, showBoundingBoxes])
   );
 
   useEffect(() => {
@@ -42,6 +71,9 @@ export default function GateMonitorPage() {
   };
 
   const gateLogs = accessLogs.slice(0, 8);
+
+  if (loading) return <AppShell><div className="flex justify-center py-20 text-muted-foreground text-sm">Memuat data...</div></AppShell>;
+  if (error) return <AppShell><div className="flex justify-center py-20 text-red-500 text-sm">Error: {error}</div></AppShell>;
 
   return (
     <AppShell>
@@ -64,26 +96,18 @@ export default function GateMonitorPage() {
               isPpeItemMissing={isPpeItemMissing}
             />
             <SimulationControl
-              workers={workers}
-              zones={zones}
-              selectedWorkerId={selectedWorkerId}
-              selectedZoneId={selectedZoneId}
-              scenario={scenario}
-              isProcessing={scanStatus === "processing"}
-              onWorkerChange={setSelectedWorkerId}
-              onZoneChange={setSelectedZoneId}
-              onScenarioChange={setScenario}
-              onSimulate={handleSimulateScan}
+              workers={workers} zones={zones}
+              selectedWorkerId={selectedWorkerId} selectedZoneId={selectedZoneId}
+              scenario={scenario} isProcessing={scanStatus === "processing"}
+              onWorkerChange={setSelectedWorkerId} onZoneChange={setSelectedZoneId}
+              onScenarioChange={setScenario} onSimulate={handleSimulateScan}
             />
           </div>
 
           <div className="flex flex-col gap-6">
             <ScanResultCard
-              scanStatus={scanStatus}
-              activeWorker={activeWorker}
-              activeZone={activeZone}
-              zones={zones}
-              isPpeItemMissing={isPpeItemMissing}
+              scanStatus={scanStatus} activeWorker={activeWorker} activeZone={activeZone}
+              zones={zones} isPpeItemMissing={isPpeItemMissing}
             />
           </div>
         </div>
