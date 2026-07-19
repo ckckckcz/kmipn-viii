@@ -1,0 +1,28 @@
+export const DEFAULT_PHOTO_URL = "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=120&h=120&fit=crop&q=80";
+
+export const WORKER_TEXT = {
+  title: "Manajemen Pekerja",
+  description: "Kelola data profil pekerja, assignment zona, dan pantau tingkat kepatuhan K3 individu.",
+  searchPlaceholder: "Cari pekerja berdasarkan nama atau ID...",
+  addWorker: "Tambah Pekerja",
+  tableCols: ["Nama Pekerja", "ID Card Number", "Zona Penugasan", "Kepatuhan K3", "Aksi"],
+  emptySearch: "Tidak ada pekerja yang cocok dengan pencarian.",
+  noZone: "Belum Ditugaskan",
+  unknown: "Unknown Worker",
+  newTitle: "Tambah Pekerja Baru",
+  newDescription: "Daftarkan pekerja baru dan tentukan penugasan area kerja default.",
+  formTitle: "Formulir Pendaftaran Pekerja",
+  formDescription: "Isi data identitas pekerja beserta foto profil untuk identifikasi wajah.",
+  photoLabel: "Foto Profil Pekerja",
+  photoHint: "Format JPG, PNG. Maksimal 2MB. Hanya disimpan di lokal session.",
+  noImage: "No Image",
+  nameLabel: "Nama Lengkap Pekerja",
+  namePlaceholder: "Contoh: Budi Prasetyo",
+  idLabel: "Nomor Kartu Identitas (ID Card Number)",
+  idPlaceholder: "Contoh: ID-09412-BDP",
+  zoneLabel: "Zona Penugasan Utama",
+  zonePlaceholder: "Pilih Zona",
+  save: "Simpan Pekerja",
+  cancel: "Batal",
+  selectPhoto: "Pilih Foto",
+};
