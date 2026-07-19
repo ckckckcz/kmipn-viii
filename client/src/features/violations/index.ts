@@ -1,1 +1,1 @@
-export * from './data/violations'
+export { default as ViolationsPage } from "@/features/violations/page";

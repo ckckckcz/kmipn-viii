@@ -3,6 +3,7 @@
 import React from "react";
 import { Shield, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 export default function RegisterPage() {
     return (
@@ -100,7 +101,7 @@ export default function RegisterPage() {
 
             {/* Right Column (Image/Decoration) */}
             <div className="hidden lg:block relative flex-1 bg-slate-950 overflow-hidden">
-                <img
+                <Image
                     src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&fit=crop"
                     alt="Background"
                     className="absolute inset-0 w-full h-full object-cover opacity-40"
