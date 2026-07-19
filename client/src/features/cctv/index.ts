@@ -1,1 +1,1 @@
-// Barrel export for cctv feature
+export { CctvPage } from "@/features/cctv/pages/CctvPage";
