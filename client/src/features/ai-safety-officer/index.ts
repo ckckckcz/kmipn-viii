@@ -1,1 +1,1 @@
-// Barrel export for ai-safety-officer feature
+export { AiSafetyOfficerPage } from "@/features/ai-safety-officer/pages/AiSafetyOfficerPage";
